@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem page</title>
+    {%load static%}
+</head>
+<body>
+    
+    <header>
+        <span id="home_button">
+            <a href="{% url 'index' %}">
+            <button>
+                Home
+            </button>
+        </a>
+        </span>
+        <h1 id="problem_nm">{{problem_detail.problem_nm}}</h1>
+    </header>
+
+    <main>
+        <div>
+            <p style="white-space: pre-line">{{problem_detail.problem_st}}</p>
+        </div>
+        <hr>
+        <div>
+            <h3>Input</h3>
+            <p style="white-space: pre-line">{{problem_testcase.problem_input}}</p>
+        </div>
+        <hr>
+        <div>
+            <h3>Output</h3>
+            <p style="white-space: pre-line">{{problem_testcase.problem_output}}</p>
+        </div>
+        <hr>
+    </main>
+
+    <footer>
+        {%block content %}
+        <form method="post" action="{%url 'leaderboard' problem_detail.id %}" enctype="multipart/form-data">
+            {%csrf_token %}
+            <div id="language_list">
+                <select name="language" >
+                    <option value="python">python</option>
+                    <option value="c++">c++</option>
+                    <option value="c">c</option>
+
+                </select>
+            </div>
+
+            <div>
+                <textarea name="user_problem_code" id="usercode" cols="100" rows="30" placeholder="Submit your code here!"></textarea>
+            </div>
+            <div>
+                <input type="file" name="codefile">  
+                <!-- mind it above name  -->
+            </div>
+            <button type="submit" name="submit">Submit</button>
+            <!-- mind it name  -->
+
+        </form>
+        {%endblock%}
+
+
+    </footer>
+
+</body>
+</html>

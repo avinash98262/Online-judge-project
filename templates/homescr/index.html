@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online judge</title>
+    {% load static %}
+    <!-- <link rel="stylesheet" href="{%static 'index.css' %}"> -->
+</head>
+<body>
+    <header>
+        <h1 id="main_logo">
+            Online Judge
+        </h1>
+    </header>
+
+    <main>
+        <caption> <h2 id="table_caption"> Problem Set</h2>
+        </caption>
+        <table>
+          <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Difficulty</th>
+          </tr>
+    {% for q in question %}
+          <tr>
+            <td id="problem_code">{{q.problem_code}}</td>
+            <td id="problem_nm">
+                <a href="{% url 'problem_page' q.id %}">{{q.problem_nm}}</a>
+            </td>
+            <td id="problem_dff">
+                {% if q.problem_diff == 'easy' %}
+                <span id="easy"> &nbsp;&nbsp;&nbsp;{{q.problem_diff}} &nbsp;&nbsp;&nbsp;</span>
+                {%endif%}
+
+                {% if q.problem_diff == 'medium' %}
+                <span id="medium"> &nbsp;&nbsp;&nbsp;{{q.problem_diff}} &nbsp;&nbsp;&nbsp;</span>
+                {%endif%}
+
+                {% if q.problem_diff == 'hard' %}
+                <span id="hard"> &nbsp;&nbsp;&nbsp;{{q.problem_diff}} &nbsp;&nbsp;&nbsp;</span>
+                {%endif%}
+            </td>
+
+          </tr>
+          {%endfor%}
+        </table>
+
+    </main>
+    
+</body>
+</html>

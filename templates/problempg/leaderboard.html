@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>leaderboard</title>
+    {%load static %}
+</head>
+<body>
+    
+    <header>
+        <div id="lb_heading">
+            <h1>Leaderboard</h1>
+        </div>
+    </header>
+    <main>
+    <table>
+        <tr>
+            <th>User</th>
+            <th>Code-Problem</th>
+            <th>Difficulty</th>
+            <th>Verdict</th>
+            <th>Language</th>
+            <th>Submission time</th>
+        </tr>
+        {% for verdict in verdict %}
+        <tr>
+            <td>user</td>
+            <td>{{verdict.problem_code}}-{{verdict.solution_problem}}</td>
+            <td>{{verdict.problem_diff}}</td>
+            <td>
+                {% if verdict.verdict == 'AC' %}
+                <span id="AC">{{verdict.verdict}}</span>
+                {%endif%}
+
+                {% if verdict.verdict == 'WA' %}
+                <span id="WA">{{verdict.verdict}}</span>
+                {%endif%}
+                
+            </td>
+            <td>{{verdict.solution_lang}}</td>
+            <td>{{verdict.submission_time}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+</main>
+</body>
+</html>
