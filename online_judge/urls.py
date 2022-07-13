@@ -18,8 +18,8 @@ from django.conf  import settings
 from django.contrib import admin
 from django.urls import path, include
 
-admin.site.site_header="OJ administration"
-admin.site.index_title="Welcome to OJ administration page"
+admin.site.site_header="OJ"
+admin.site.index_title="Welcome to OJ"
 
 urlpatterns = [
     path('home/', include('problempg.urls')),

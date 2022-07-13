@@ -1,5 +1,7 @@
 from asyncio import subprocess
 import subprocess
+
+
 from django.shortcuts import render
 from homescr.models import Problems, Testcases, Solutions
 from django.core.files.storage import FileSystemStorage
@@ -40,20 +42,20 @@ def usercode(request, problem_id):
                 file_out.close()
                 file_in.close()
              
-        elif request.FILES['codefile']:   # ----->
-            user_code_file = request.FILES['codefile']
+        elif request.FILES['2']:   # ----->
+            user_code_file = request.FILES['2']
             fs = FileSystemStorage()
             fs.save(user_code_file.name, user_code_file)
             file_type =str(user_code_file.name)
             cpp_lan = file_type.find(".cpp")
-            file_path = "E:\online_judge\language\media\\" + user_code_file.name
-            if cpp_lan!=-1:
+            file_path = "E:\online_judge\language\BASE_DIR\media\\" + user_code_file.name
+            if cpp_lan!= -1:
                 lang = "c++"
                 subprocess.run(["g++",file_path, "-o", "output.exe"], shell= True)
                 subprocess.run([".\output.exe"], stdin = file_in, stdout = file_out, shell = True)
                 file_out.close()
                 file_in.close()
-                os.remove(file_path)
+                # os.remove(file_path)
         
         file_out = open("E:\online_judge\language\output.txt", "r")
         out = file_out.read()
@@ -75,7 +77,8 @@ def usercode(request, problem_id):
         sol.save()
         
         latest_lb = Solutions.objects.order_by('-submission_time')[:30]
+        context = {'verdict':latest_lb}
         
-    return render(request, 'problempg/leaderboard.html', {'verdict':latest_lb})
+    return render(request, 'problempg/leaderboard.html', context)
         
     
