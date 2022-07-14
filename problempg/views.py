@@ -55,7 +55,7 @@ def usercode(request, problem_id):
                 subprocess.run([".\output.exe"], stdin = file_in, stdout = file_out, shell = True)
                 file_out.close()
                 file_in.close()
-                # os.remove(file_path)
+                os.remove(file_path)
         
         file_out = open("E:\online_judge\language\output.txt", "r")
         out = file_out.read()
