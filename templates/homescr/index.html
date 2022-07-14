@@ -1,21 +1,22 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online judge</title>
-    {% load static %}
-    <!-- <link rel="stylesheet" href="{%static 'index.css' %}"> -->
+
+    <link rel="stylesheet" href="{% static 'index.css' %}"> 
 </head>
 <body>
     <header>
-        <h1 id="main_logo">
+        <h1 id="main_logo" class = "heading text-align:center;">
             Online Judge
         </h1>
     </header>
 
-    <main>
+    <main class= "main">
         <caption> <h2 id="table_caption"> Problem Set</h2>
         </caption>
         <table>
@@ -25,7 +26,7 @@
             <th>Difficulty</th>
           </tr>
     {% for q in question %}
-          <tr>
+          <tr class= "items">
             <td id="problem_code">{{q.problem_code}}</td>
             <td id="problem_nm">
                 <a href="{% url 'problem_page' q.id %}">{{q.problem_nm}}</a>
