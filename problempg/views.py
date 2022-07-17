@@ -6,6 +6,7 @@ from django.shortcuts import render
 from homescr.models import Problems, Testcases, Solutions
 from django.core.files.storage import FileSystemStorage
 import os
+# import docker
 from datetime import datetime
 
 # Create your views here.
@@ -18,6 +19,9 @@ def problem_page(request, problem_id):
 
 def usercode(request, problem_id):
     if request.method == 'POST':
+        
+        # docker_client = docker.from_env()
+        
         problem_testcase = Testcases.objects.get(id=problem_id)
         problem_detail = Problems.objects.get(id = problem_id)
         file_out = open("E:\online_judge\language\output.txt","w")
